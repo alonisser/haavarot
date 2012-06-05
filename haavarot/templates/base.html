@@ -1,0 +1,41 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+    <html lang="he-IL">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+            <meta name="description" content="הצגה נוחה של העברות בתקציב המדינה">
+            <meta name = "author" content = "alonisser">
+            <title>{%block title%}העברות -איפה הכסף?{%endblock%}</title>
+            <meta name = "viewport" content = "width = device-width,initial-scale = 1.0">
+            <link rel = "stylesheet" href = "{%static "css/style.css"%}" type = "text/css" media="screen"/>
+            <!--<script src ="js/libs/modernizr"></script -->
+                    
+                    
+        </head>
+        <body>
+            <header>
+                {%block sidebar%}
+                    <ul>
+                        <li><a href = "transfers/">העברות</a></li>
+                        <li><a href = "transfers/about">אודות</a></li>
+                        <li class = "adminlink"><a href = "admin/">ניהול</a></li>
+                    </ul>
+                    
+                {%endblock%}
+            </header>
+            <article id = "content">
+                {%block content%}{%endblock%}
+            
+            <!--<script src = "jquery></script> failed jquery upload-->
+            </article>
+            <aside>
+                {%block aside%}
+                  "מה הסיפור כאן?"  
+                {%endblock%}
+            </aside>
+            <footer>
+            </footer>
+        </body>
+    </html>
+        

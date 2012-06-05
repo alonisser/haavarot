@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{%block content%}
+    <h2>העברה: <em>{{transfer.plan_name}}</em></h2>
+    <ul>
+            
+        <li>שם התוכנית: <a href="/transfers/plan/{{transfer.plan_name}}">{{transfer.plan_name}}</a>
+        {%if transfer.plan_code%}
+        . קוד התוכנית: {{transfer.plan_code}}
+        {%endif%}
+        </li>
+        <li>סכום נטו: {{transfer.sum_neto}} אש"ח</li>
+        <li>שנה: <a href = "/transfers/year/{{transfer.year}}">{{transfer.year}}</a></li>
+        <li>בקשה: {{transfer.request}} תיאור בקשה:
+        <!--<a href='/transfers/description/{{transfer.description}}'>{{transfer.description}}</a><br/>-->
+        <a href='{%url description_url transfer.description%}'>{{transfer.description}}</a>
+        </li>
+        <li>שינוי: <a href = "/transfers/change/{{transfer.change_name}}">{{transfer.change_name}}</a> קוד שינוי: {{transfer.change_code}}</li>
+        
+    {#%url description_url transfer.description%#}
+    </ul>
+{%endblock%}
+
+
+    

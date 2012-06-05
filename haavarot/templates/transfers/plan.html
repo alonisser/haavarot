@@ -1,0 +1,16 @@
+{%extends "base.html"%}
+
+{%block content%}
+    <h2>העברות בתוכנית זו: {{planname}}</h2>
+    <ul>
+    {%for transfer in transfers_list%}
+            <li>תיאור בקשה: <a href="{% url base_transfer transfer.id%}">{{transfer.description}}</a>. בסך של
+            {%if transfer.sum_neto < 0  %}
+            <span class = "minus"> ({{transfer.abs_sum_neto}})</span><!--todo:write a specific filter that returns abs value  -->    
+        {%else%}
+            {{transfer.sum_neto}}
+        {%endif%}
+            אש"ח</li>
+    {%endfor%}
+    </ul>
+{%endblock%}

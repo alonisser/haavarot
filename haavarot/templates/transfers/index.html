@@ -1,0 +1,39 @@
+{%extends "base.html"%}
+{%block content%}
+{%if all_transfers %}
+    <ul>
+        {%for transfer in all_transfers%}
+            <li>מטרת העברה: <a href="{{transfer.id}}/">{{transfer.plan_name}}</a>. בסך של
+            {%if transfer.sum_neto < 0  %}
+            <span class = "minus"> ({{transfer.abs_sum_neto}})</span><!--todo:write a specific filter that returns abs value  -->    
+        {%else%}
+            {{transfer.sum_neto}}
+        {%endif%}
+            אש"ח</li>
+        {%endfor%}
+    </ul>
+
+{%else%}
+    <p> no Transfer file loaded yet</p>
+    <a href ='/transfers/load/'>better try loading first</a>
+{%endif%}
+{%if is_paginated%}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">הקודם</a>
+        {% endif %}
+
+        <span class="current">
+            עמוד {{ page_obj.number }} מתוך {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">הבא</a>
+        {% endif %}
+    </span>
+</div>
+{%endif%}
+{%endblock%}
+
+    

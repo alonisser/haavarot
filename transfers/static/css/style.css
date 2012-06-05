@@ -1,0 +1,80 @@
+@import url("normalize.css");
+
+/*general*/
+* {
+    direction:rtl;
+}
+a {
+    text-decoration:none
+}
+
+a:hover {
+    background-color:yellow;
+}
+/*header and nav bar*/
+header {
+        padding-top:1px;
+        padding-bottom:1px;
+        background-color:grey;
+        /*height:3%;*/
+}
+
+header ul {
+    height:2em;
+}
+
+header ul li {
+    display:inline;
+    padding-right:4px;
+     
+}
+
+header ul:first-child {
+    padding-right:6px;
+}
+
+header ul li a {
+    text-decoration:none;
+    background-color:white;
+    color:blue;
+}
+
+li.adminlink {
+    float:left;
+}
+/*content*/
+#content {
+    margin-top:1em;
+    padding-top:1px;
+    float:right;
+    width:60%;
+    padding-right:1em;
+}
+#content h2 {
+     margin-top:0.01em;   
+}
+
+#content ul {
+    
+    list-style-type:none;
+}
+
+#content ul li {
+    padding-bottom:0.5em;
+}
+/*the aside part*/
+aside {
+    
+    margin-top:1em;
+    width:30%;
+    height:20em;
+    border-width: thin;
+    border-style: solid;
+    border-color: grey;
+    float:right;
+    
+}
+/*special classes*/
+.minus {
+    color:red;
+}
