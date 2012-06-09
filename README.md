@@ -2,11 +2,13 @@
 ------------------
 *haavarot*: a project showing goverment budget transfer orders in Israel
 
-information (currently only 2011) from csv data file published in Israel [d1][govermental data site].
+information (currently only 2011) from csv data file published in Israel [govermental data site][d1].
 
-inspiration from [d2][Israel public knowledge workshop] and also this [d3][blog post]
+inspiration from [Israel public knowledge workshop][d2] and also this [blog post][d3].
 
 Also my first Django project.
+
+requirements in the requirements.txt file.
 
 more info soon!
 
