@@ -1,6 +1,7 @@
 #hey there
 ------------------
-<h2>haavarot</h2>: a project showing goverment budget transfer orders in Israel
+<h2>haavarot</h2>
+a project showing goverment budget transfer orders in Israel
 
 information (currently only 2011) from csv data file published in Israel [govermental data site][d1].
 
