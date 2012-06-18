@@ -2,9 +2,15 @@
 from django.db import models
 from django.db.models import permalink
 from datetime import datetime
-#from django.utils import timezone
 
+#from django.utils import timezone
+class Error(models.Model):
+    timestamp = models. DateTimeField()
+    line_num = models.IntegerField()
+    problem = models.CharField(max_length=200)
+    
 class Transfer(models.Model):
+    line_num = models.IntegerField()#not sure if I should keep it
     year = models.IntegerField(u'השנה')
     section = models.IntegerField()
     request = models.IntegerField(u'בקשה')

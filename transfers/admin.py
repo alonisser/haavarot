@@ -1,5 +1,5 @@
 # -*- coding: utf_8 -*-
-from transfers.models import Transfer
+from transfers.models import Transfer, Error
 from django.contrib import admin
 
 
@@ -29,4 +29,5 @@ class TransferAdmin(admin.ModelAdmin):
     list_filter =['request_type','change_name','plan_name']
     
 admin.site.register(Transfer,TransferAdmin)
+admin.site.register(Error)
 #admin.site.register(Transfer,TransferAdmin)
