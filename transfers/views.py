@@ -5,7 +5,7 @@ import csv
 from datetime import datetime
 from django.utils import timezone
 
-from transfers.models import Transfer
+from transfers.models import Transfer, Error
 from django.http import HttpResponse,Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse    
 from django.template import Context,loader, RequestContext
@@ -19,37 +19,59 @@ def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
         yield [unicode(cell, 'windows-1255') for cell in row]
         
 def load(request):
-    
+    #todo:only authenticated admin
+    #todo:better error logging
+    #todo:show a 'loading' gif/canvas while loading, even better - status reports
     file = open("transfers/changes_2011.csv",'rb',)
-    print (file)
+    #print (file)
     changes_to_load = unicode_csv_reader(file)
-    for row in changes_to_load:
-        print (row)
-        o = Transfer(year = row[0],
-                     section = row[1],
-                     request = row[2],
-                     description = row[3],
-                     change_code = row[4],
-                     change_name = row[5],
-                     request_code = row[6],
-                     request_type = row[7],
-                     committee_num = row[8],
-                     plan_code = row[9],
-                     plan_name = row[10],
-                     sum_neto = int(''.join(row[11].split(','))),
-                     sum_conditional = int(''.join(row[12].split(','))),
-                     planned_income = int(''.join(row[13].split(','))),
-                     sum_permission = int(''.join(row[14].split(','))),
-                     max_jobs = row[15]
-                     )
-        o.save()
-        print ('saved')
-        print (0)
+    
+    for k,row in enumerate(changes_to_load):
+        #print (row)
+        try:
+            o = Transfer(line_num = k,
+                         year = row[0],
+                         section = row[1],
+                         request = row[2],
+                         description = row[3],
+                         change_code = row[4],
+                         change_name = row[5],
+                         request_code = row[6],
+                         request_type = row[7],
+                         committee_num = row[8],
+                         plan_code = row[9],
+                         plan_name = row[10],
+                         sum_neto = int(''.join(row[11].split(','))),
+                         sum_conditional = int(''.join(row[12].split(','))),
+                         planned_income = int(''.join(row[13].split(','))),
+                         sum_permission = int(''.join(row[14].split(','))),
+                         max_jobs = row[15]
+                         )
+            o.save()
+            print ('saved:', o)
+            
+        except Exception as e:
+            print ('some error in line:',k)
+            error = Error(line_num = k, timestamp = timezone.now(), problem = e)
+            error.save()
+            continue
+            #print (0)
 
     file.close()
-    print ('ended')
-    return ('<p>loading done</p>')
+    print ('Loading Ended')
+    return ('<p>loading done</p>') #todo:return something more useful with some statistics..file name, number of raws
 
+def my_ListView(request,template_name,property,title,**kwargs):
+    #template_name =template_name
+    #print ("template: ", template_name)
+    property = getattr(Transfer, property)
+    #itle = kwargs['title']
+    o = get_list_or_404(Transfer, property =kwargs['plan_name'])
+    
+    #print ('o:',o)
+    context_object_name = "transfers_list" 
+    return render_to_response(template_name,{context_object_name:o,title:kwargs['plan_name']})
+    
 def plan_ListView(request,**kwargs):
     
     template_name = 'transfers/plan.html'
