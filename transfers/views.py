@@ -14,14 +14,17 @@ from django.views.generic import ListView
 
 #later change this to something not hardcoded
 def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
-    csv_reader = csv.reader(utf8_data, dialect=dialect, **kwargs)
-    for row in csv_reader:
-        yield [unicode(cell, 'windows-1255') for cell in row]
+    unicode_reader = csv.reader(utf8_data, dialect=dialect, **kwargs)# opening the file with python csv reader
+    for row in unicode_reader:
+        #iterating over the ascii data from csv reader and return windows-1255 encoded rows
+        yield [unicode(cell, 'windows-1255') for cell in row] #a list comprehension iterating over cells in row and return a specific unicode encoded cell
         
 def load(request):
     #todo:only authenticated admin
     #todo:better error logging
     #todo:show a 'loading' gif/canvas while loading, even better - status reports
+    #todo:no double loads!
+    #todo: allow to load more files
     file = open("transfers/changes_2011.csv",'rb',)
     #print (file)
     changes_to_load = unicode_csv_reader(file)
