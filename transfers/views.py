@@ -61,16 +61,6 @@ def load(request):
     print ('Loading Ended')
     return ('<p>loading done</p>') #todo:return something more useful with some statistics..file name, number of raws
 
-def my_ListView(request,template_name,property,title,**kwargs):
-    #template_name =template_name
-    #print ("template: ", template_name)
-    property = getattr(Transfer, property)
-    #itle = kwargs['title']
-    o = get_list_or_404(Transfer, property =kwargs['plan_name'])
-    
-    #print ('o:',o)
-    context_object_name = "transfers_list" 
-    return render_to_response(template_name,{context_object_name:o,title:kwargs['plan_name']})
     
 def plan_ListView(request,**kwargs):
     

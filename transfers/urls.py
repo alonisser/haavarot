@@ -25,15 +25,15 @@ urlpatterns = patterns('',
                             template_name = 'transfers/detail.html' #todo:protect from no such transfer
                            ),name = 'base_transfer'),
                        
-                       url (r'^plan/(?P<plan_name>[\w ]+)/$',
-                            my_ListView(
-                            property = 'plan_name',
-                            title ='planname',
-                            template_name = 'transfers/plan.html'
-                            ), name = 'plan_url'),
-                       #url(r'^plan/(?P<plan_name>[\w ]+)/$',
-                       #    'transfers.views.plan_ListView',
-                       #    name = 'plan_url'),
+                       #url (r'^plan/(?P<plan_name>[\w ]+)/$',
+                       #     my_ListView(
+                       #     property = 'plan_name',
+                       #     title ='planname',
+                       #     template_name = 'transfers/plan.html'
+                       #     ), name = 'plan_url'),
+                       url(r'^plan/(?P<plan_name>[\w ]+)/$',
+                           'transfers.views.plan_ListView',
+                           name = 'plan_url'),
                        
                         url(r'^description/(?P<description>[\w ]+)/$',
                             'transfers.views.description_ListView',
