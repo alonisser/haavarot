@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView,DetailView
 from transfers.models import Transfer
-from transfers.views import description_ListView, plan_ListView, my_ListView
+from transfers.views import description_ListView, plan_ListView #,my_ListView
 
 
 from django.contrib import admin
